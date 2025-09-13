@@ -42,26 +42,20 @@ namespace EFandDBPractise.Controllers
             return CreatedAtAction(nameof(GetAllProducts), newproduct);
         }
 
+        [HttpPut("[action]/{id}")]
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody]ProductDto product) 
+        {
+            var result = await ProductService.UpdateProduct(id, product);
+            if (result == false) return NotFound();
+            return NoContent();
+        }
+
         [HttpDelete("[action]/{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             var result = await ProductService.DeleteProduct(id);
-            if(result==false) return NotFound();
+            if (result == false) return NotFound();
             return NoContent();
-        }
-
-        [HttpPut("[action]/{id}")]
-        public async Task<IActionResult> UpdateProduct(int id, [FromBody]ProductDto product) 
-        {
-            try
-            {
-                await ProductService.UpdateProduct(id, product);
-                return NoContent();
-            }
-            catch (Exception ex) 
-            {
-                return NotFound(ex.Message);
-            }
         }
     }
 }

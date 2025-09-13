@@ -42,21 +42,20 @@ namespace EFandDBPractise.Services
             return product;
         }
 
-        public async Task UpdateProduct(int id, ProductDto newproduct)
+        public async Task<bool> UpdateProduct(int id, ProductDto newproduct)
         {
-            var ans = await context.Products.FindAsync(id);
-            Product updatedproduct = new Product()
-            {
-                ProductId = id,
-                ProductName = newproduct.ProductName,
-                BrandId = newproduct.BrandId,
-                CategoryId = newproduct.CategoryId,
-                ModelYear = newproduct.ModelYear,
-                Price = newproduct.Price,
-            };
+            var old = await context.Products.FindAsync(id);
+            if (old == null) return false;
+     
+            old.ProductName = newproduct.ProductName;
+            old.BrandId = newproduct.BrandId;
+            old.CategoryId = newproduct.CategoryId;
+            old.ModelYear = newproduct.ModelYear;
+            old.Price = newproduct.Price;
 
-            context.Products.Update(updatedproduct);
+            context.Products.Update(old);
             await context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<bool> DeleteProduct(int id) 
