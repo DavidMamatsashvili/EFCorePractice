@@ -1,0 +1,6 @@
+@EFandDBPractise_HostAddress = http://localhost:5239
+
+GET {{EFandDBPractise_HostAddress}}/Products/GetAllproducts
+Accept: application/json
+
+###
