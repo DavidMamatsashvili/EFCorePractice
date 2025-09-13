@@ -49,5 +49,19 @@ namespace EFandDBPractise.Controllers
             if(result==false) return NotFound();
             return NoContent();
         }
+
+        [HttpPut("[action]/{id}")]
+        public async Task<IActionResult> UpdateProduct(int id, [FromBody]ProductDto product) 
+        {
+            try
+            {
+                await ProductService.UpdateProduct(id, product);
+                return NoContent();
+            }
+            catch (Exception ex) 
+            {
+                return NotFound(ex.Message);
+            }
+        }
     }
 }

@@ -42,6 +42,23 @@ namespace EFandDBPractise.Services
             return product;
         }
 
+        public async Task UpdateProduct(int id, ProductDto newproduct)
+        {
+            var ans = await context.Products.FindAsync(id);
+            Product updatedproduct = new Product()
+            {
+                ProductId = id,
+                ProductName = newproduct.ProductName,
+                BrandId = newproduct.BrandId,
+                CategoryId = newproduct.CategoryId,
+                ModelYear = newproduct.ModelYear,
+                Price = newproduct.Price,
+            };
+
+            context.Products.Update(updatedproduct);
+            await context.SaveChangesAsync();
+        }
+
         public async Task<bool> DeleteProduct(int id) 
         {
             var product = await context.Products.FindAsync(id);
