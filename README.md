@@ -1,4 +1,4 @@
-# EFandDBPractise
+# Entity Framework core & Database Practise
 
 **Practice project for ASP.NET Core and Entity Framework Core with models, services, controllers, and migrations.**
 
