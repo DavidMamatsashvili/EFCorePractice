@@ -36,4 +36,5 @@ EFandDBPractise is a personal practice project aimed at mastering **Entity Frame
 ## Getting Started
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/DavidMamatsashvili/EFandDBPractise.git
+   git clone https://github.com/DavidMamatsashvili/EFCorePractice.git
+
